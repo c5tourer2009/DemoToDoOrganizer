@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/descriptor/basic" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_o5SIADNREeuZ0cn5SoI5JQ">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_YyJacDNTEeuZ0cn5SoI5JQ" featurename="descriptors" parentElementId="xpath:/">
+    <elements xsi:type="basic:PartDescriptor" xmi:id="_VyHQkDNWEeuZ0cn5SoI5JQ" elementId="com.vogella.contribute.parts.partdescriptor.info" label="Additional Info" category="vogella" closeable="true" contributionURI="bundleclass://com.vogella.contribute.parts/com.vogella.contribute.parts.AdditionalInformationPart">
+      <tags>View</tags>
+    </elements>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_a2dNYDY5Eeut_9AWbMsaXA" featurename="children" parentElementId="com.vogella.tasks.ui.toolbar.main">
+    <elements xsi:type="menu:DirectToolItem" xmi:id="_d7kkMDY5Eeut_9AWbMsaXA" elementId="xpath:/" label="Add. Infos" contributionURI="bundleclass://com.vogella.contribute.parts/com.vogella.contribute.parts.handlers.AdditionalInformationHandler"/>
+  </fragments>
+</fragment:ModelFragments>

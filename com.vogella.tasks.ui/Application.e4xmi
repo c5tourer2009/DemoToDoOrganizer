@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ASCII"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_mQK7UDKOEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.application">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_5F_N8DKSEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.trimmedwindow.taskmanager" label="Task Manager" x="100" y="100" width="1024" height="800">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_MrHmgDYtEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.perspectivestack.main">
+      <children xsi:type="advanced:Perspective" xmi:id="_FdQmwDYvEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.perspective.main">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_ScOiIDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_V_a8EDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.navigation">
+            <children xsi:type="basic:Part" xmi:id="_e0ePsDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskContainer" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskContainerPart" label="Groups"/>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_6GA6UDYxEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partsashcontainer.content">
+            <children xsi:type="basic:PartStack" xmi:id="_-JoWMDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.contentTop">
+              <children xsi:type="basic:Part" xmi:id="_yqf-8DKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskList" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskListPart" label="Tasks"/>
+            </children>
+            <children xsi:type="basic:PartStack" xmi:id="_A1qeoDYxEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.contentBottom">
+              <children xsi:type="basic:Part" xmi:id="_4HP7gDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskView" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskPart" label="Task" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/home.png"/>
+            </children>
+          </children>
+        </children>
+      </children>
+    </children>
+    <mainMenu xmi:id="_fqd50DTXEeuCm_503Nzb1w" elementId="org.eclipse.ui.main.menu">
+      <children xsi:type="menu:Menu" xmi:id="_a2LuoDTbEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.menu" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_cMTssDTeEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.saveAll" label="Save" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/save_edit.png" command="_GpYF0DTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_Zg6LgDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menuseparator.separator1"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_mdTJcDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" command="_M6AWYDTVEeuCm_503Nzb1w"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_eXhucDTbEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PP4TQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.newTask" label="New Task" tooltip="New Task" command="_Ped3MDTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_j41UQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.removeTask" label="Remove Task" tooltip="Remove Task" command="_RZXdoDTVEeuCm_503Nzb1w"/>
+      </children>
+    </mainMenu>
+    <trimBars xmi:id="_Y-wVoDYdEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.trimbar.top">
+      <children xsi:type="menu:ToolBar" xmi:id="_ejWmoDYdEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.toolbar.main">
+        <children xsi:type="menu:HandledToolItem" xmi:id="_mPOGIDYdEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.toolbar.main.handleditem.save" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/save_edit.png" command="_GpYF0DTVEeuCm_503Nzb1w"/>
+      </children>
+    </trimBars>
+  </children>
+  <handlers xmi:id="_lpn1UDTWEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.saveall" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.SaveAllHandler" command="_GpYF0DTVEeuCm_503Nzb1w"/>
+  <handlers xmi:id="_v6x8EDTWEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.exit" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ExitHandler" command="_M6AWYDTVEeuCm_503Nzb1w"/>
+  <handlers xmi:id="_HmeVUDTXEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.newTask" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_Ped3MDTVEeuCm_503Nzb1w"/>
+  <handlers xmi:id="_NgljUDTXEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.removeTask" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveTaskHandler" command="_RZXdoDTVEeuCm_503Nzb1w"/>
+  <rootContext xmi:id="_oP2BsDfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+  <rootContext xmi:id="_qqJg8DfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  <commands xmi:id="_GpYF0DTVEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.saveAll" commandName="Save All"/>
+  <commands xmi:id="_M6AWYDTVEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
+  <commands xmi:id="_Ped3MDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.newTask" commandName="New task"/>
+  <commands xmi:id="_RZXdoDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.removeTask" commandName="Remove task"/>
+  <addons xmi:id="_mQK7UTKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_mQK7UjKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_mQK7UzKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_mQK7VDKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_mQK7VTKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_mQK7VjKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+  <addons xmi:id="_mQK7VzKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+</application:Application>
