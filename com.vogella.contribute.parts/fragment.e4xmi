@@ -6,6 +6,6 @@
     </elements>
   </fragments>
   <fragments xsi:type="fragment:StringModelFragment" xmi:id="_a2dNYDY5Eeut_9AWbMsaXA" featurename="children" parentElementId="com.vogella.tasks.ui.toolbar.main">
-    <elements xsi:type="menu:DirectToolItem" xmi:id="_d7kkMDY5Eeut_9AWbMsaXA" elementId="xpath:/" label="Add. Infos" contributionURI="bundleclass://com.vogella.contribute.parts/com.vogella.contribute.parts.handlers.AdditionalInformationHandler"/>
+    <elements xsi:type="menu:DirectToolItem" xmi:id="_d7kkMDY5Eeut_9AWbMsaXA" elementId="xpath:/" label="Plugin Cmd" contributionURI="bundleclass://com.vogella.contribute.parts/com.vogella.contribute.parts.handlers.AdditionalInformationHandler"/>
   </fragments>
 </fragment:ModelFragments>
