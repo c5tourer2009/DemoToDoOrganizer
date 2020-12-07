@@ -111,9 +111,6 @@ public class TaskListPart {
 		    }
 		});
 		
-		
-		IDataManager localDataManager = new DataManager();
-		tableViewer.setInput(((ITaskCategory)((IToDoList)localDataManager.getToDoLists().get(0)).getCategories().get(0)).getTasks());
 		System.out.println(this.getClass().getSimpleName() + " constructed");
 	}
 	

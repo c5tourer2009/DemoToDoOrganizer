@@ -13,8 +13,8 @@ public class DataManager implements IDataManager {
 	public DataManager() {
 		toDoLists = new WritableList<IToDoList>();
 		
-		toDoLists.add(DemoToDoListFactory.createDemoToDoList());
-		toDoLists.add(DemoToDoListFactory.createDemoToDoList());
+		toDoLists.add(DemoToDoListFactory.createDemoToDoList("Private"));
+		toDoLists.add(DemoToDoListFactory.createDemoToDoList("Business"));
 	}
 	
 	@Override

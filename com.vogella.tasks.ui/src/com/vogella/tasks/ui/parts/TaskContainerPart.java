@@ -48,21 +48,36 @@ public class TaskContainerPart {
 		});
 		
 		IObservableFactory factory = new IObservableFactory() {
-			private IListProperty prop = BeanProperties.list("categoryList");
+			private IListProperty prop = BeanProperties.list("categories");
 			
 			public IObservable createObservable(Object target) {
 				if(target instanceof IObservableList) {
 					return (IObservable) target;
 				} else if(target instanceof IToDoList) {
 					return prop.observe(target);
-				} else if(target instanceof ITaskCategory) {
-					return prop.observe(target);
 				}
 				return null;
 			}
 		};
 		
-		TreeStructureAdvisor advisor = new TreeStructureAdvisor() { };
+		TreeStructureAdvisor advisor = new TreeStructureAdvisor() { 
+			@Override
+			public Object getParent(Object element) {
+		           return "";
+		    }
+			
+			@Override
+		    public Boolean hasChildren(Object element) {
+				if(element instanceof IToDoList){
+					IToDoList folder = (IToDoList)element;
+					return !folder.getCategories().isEmpty();
+		        }
+				
+				return false;
+			}
+			
+			
+		};
 		
 		treeViewer.setContentProvider(new ObservableListTreeContentProvider(factory, advisor));
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {

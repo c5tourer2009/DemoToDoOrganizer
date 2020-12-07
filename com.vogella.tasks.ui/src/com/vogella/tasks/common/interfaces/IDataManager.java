@@ -4,5 +4,5 @@ import org.eclipse.core.databinding.observable.list.IObservableList;
 
 public interface IDataManager {
 
-	IObservableList<?> getToDoLists();
+	IObservableList<IToDoList> getToDoLists();
 }

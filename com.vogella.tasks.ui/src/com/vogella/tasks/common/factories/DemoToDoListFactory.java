@@ -16,15 +16,15 @@ import com.vogella.tasks.common.interfaces.TaskStatus;
 
 public class DemoToDoListFactory {
 	
-	public static IToDoList createDemoToDoList() {
+	public static IToDoList createDemoToDoList(String toDoListName) {
 		IToDoList toDoList = new ToDoList();
-		toDoList.setName("Private");
+		toDoList.setName(toDoListName);
 		
 		ITaskCategory taskCategory = new TaskCategory();
-		taskCategory.setName("SSI Schäfer");
+		taskCategory.setName("Shopping");
 		toDoList.add(taskCategory);
 		
-		for (ITask task : createInitialDataModel()) {
+		for (ITask task : createInitialDataModel(taskCategory.getName())) {
 			try {
 				taskCategory.add(task);
 			} catch (OperationNotSupportedException e) {
@@ -35,10 +35,11 @@ public class DemoToDoListFactory {
 		return toDoList;
 	}
 	
-	private static List<ITask> createInitialDataModel() {
+	private static List<ITask> createInitialDataModel(String categoryName) {
 		ITask task1 = new Task();
-		task1.setTitle("Task 1");
-		task1.setDescription("bla bla bla");
+		task1.setTitle(categoryName + "Task 1");
+		task1.setDescription("Media Markt: Monitor 28'");
+		task1.setPriority(TaskPriority.LOW);
 		task1.setStatus(TaskStatus.NOT_DONE);
 		try {
 			task1.setDueDate(new SimpleDateFormat("yyyy-MM-dd HH:mm").parse("2020-12-31 20:20"));
@@ -47,8 +48,8 @@ public class DemoToDoListFactory {
 		}
 		
 		ITask task2 = new Task();
-		task2.setTitle("Task 2");
-		task2.setDescription("blu blub blub");
+		task2.setTitle(categoryName + "Task 2");
+		task2.setDescription("Merkur: Milk");
 		task2.setPriority(TaskPriority.LOW);
 		task2.setStatus(TaskStatus.NOT_DONE);
 		try {

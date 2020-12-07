@@ -6,12 +6,17 @@ import javax.inject.Named;
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.ObservablesManager;
 import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.beans.BeansObservables;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.services.IStylingEngine;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.databinding.viewers.IViewerObservableValue;
+import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
+import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ComboViewer;
@@ -22,6 +27,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+
+import com.vogella.tasks.common.impl.Task;
 import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.TaskPriority;
 import com.vogella.tasks.common.interfaces.TaskStatus;
@@ -37,6 +44,7 @@ public class TaskPart {
 		dataBindingContext = new DataBindingContext();
 		observablesManager = new ObservablesManager();
 		task = new WritableValue<>();
+		task.setValue(new Task());
 		
 		observablesManager.runAndCollect(new Runnable() {
 			
@@ -61,7 +69,8 @@ public class TaskPart {
 		if(stylingEngine != null ) {
 			stylingEngine.setClassname(header, "taskHeader");	
 		}
-				
+		
+		//*** Title ***
 		Label label = new Label(header, SWT.BOLD);
 		label.setText("Title");
 		
@@ -70,8 +79,9 @@ public class TaskPart {
 		taskTitleText.setEditable(true);
 		dataBindingContext.bindValue(
 				WidgetProperties.text(SWT.Modify).observe(taskTitleText), 
-				BeanProperties.value("title").observeDetail(task));
+				BeanProperties.value(Task.FIELD_TITLE).observeDetail(task));
 		
+		//*** Status ***
 		label = new Label(header, SWT.NONE);
 		label.setText("Status");
 				
@@ -85,21 +95,11 @@ public class TaskPart {
 		});
 		comboViewer.setInput(TaskStatus.class.getEnumConstants());
 		
-		//CRITICAL CODE
-		/**label = new Label(parent, SWT.BORDER);
-		label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
-		IObservableValue target = WidgetProperties.text().observe(label);
-		IViewerObservableValue selectedStatus = ViewerProperties.singleSelection().observe(comboViewer);
-		// observe the summary attribute of the selection
-		IObservableValue detailValue =
-				BeanProperties
-		        .value("status", TaskStatus.class)
-		        .observeDetail(selectedStatus);
-
-		dataBindingContext.bindValue(target, detailValue);*/
-		//CRITICAL CODE
+		IObservableValue target = ViewersObservables.observeSingleSelection(comboViewer);
+		IObservableValue model = BeanProperties.value(Task.FIELD_STATUS).observeDetail(task);
+		dataBindingContext.bindValue(target, model, null, null);
 		
-		
+		//*** Priority ***
 		label = new Label(header,SWT.NONE);
 		label.setText("Priority");
 		
@@ -113,20 +113,22 @@ public class TaskPart {
 		});
 		comboViewer.setInput(TaskPriority.class.getEnumConstants());
 		
-		//TODO BINDINGS
+		target = ViewersObservables.observeSingleSelection(comboViewer);
+		model = BeanProperties.value(Task.FIELD_PRIORITY).observeDetail(task);
+		dataBindingContext.bindValue(target, model, null, null);
 		
+		//*** Due Date ***
 		label = new Label(header,SWT.NONE);
 		label.setText("Due Date");
 		
         DateTime dateD = new DateTime(header, SWT.DATE | SWT.DROP_DOWN);
-		//TODO BINDINGS
         
         Text taskDescription = new Text(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
 		taskDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
 		taskDescription.setEditable(true);
 		dataBindingContext.bindValue(
 				WidgetProperties.text(SWT.Modify).observe(taskDescription), 
-				BeanProperties.value("description").observeDetail(task));
+				BeanProperties.value(Task.FIELD_DESCRIPTION).observeDetail(task));
 	}
 	
 	@Inject
