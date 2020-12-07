@@ -27,6 +27,9 @@
       <children xsi:type="menu:Menu" xmi:id="_eXhucDTbEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_PP4TQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.newTask" label="New Task" tooltip="New Task" command="_Ped3MDTVEeuCm_503Nzb1w"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_j41UQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.removeTask" label="Remove Task" tooltip="Remove Task" command="_RZXdoDTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_SpLkADgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.menuseparator.0"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_YUSssDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.newTaskCategory" label="New Category" command="_pGabgDgnEeuzttwQVI90wA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_mjvN8DgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.removeTaskCategory" label="Remove Category" command="_EOYHUDgoEeuzttwQVI90wA"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_Y-wVoDYdEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.trimbar.top">
@@ -39,12 +42,16 @@
   <handlers xmi:id="_v6x8EDTWEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.exit" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.ExitHandler" command="_M6AWYDTVEeuCm_503Nzb1w"/>
   <handlers xmi:id="_HmeVUDTXEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.newTask" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_Ped3MDTVEeuCm_503Nzb1w"/>
   <handlers xmi:id="_NgljUDTXEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.removeTask" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveTaskHandler" command="_RZXdoDTVEeuCm_503Nzb1w"/>
+  <handlers xmi:id="_1mq3EDgnEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handler.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskCategory" command="_pGabgDgnEeuzttwQVI90wA"/>
+  <handlers xmi:id="_IDc7cDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handler.removeCategory" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveTaskCategory" command="_EOYHUDgoEeuzttwQVI90wA"/>
   <rootContext xmi:id="_oP2BsDfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
   <rootContext xmi:id="_qqJg8DfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   <commands xmi:id="_GpYF0DTVEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.saveAll" commandName="Save All"/>
   <commands xmi:id="_M6AWYDTVEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.exit" commandName="Exit"/>
-  <commands xmi:id="_Ped3MDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.newTask" commandName="New task"/>
-  <commands xmi:id="_RZXdoDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.removeTask" commandName="Remove task"/>
+  <commands xmi:id="_Ped3MDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.newTask" commandName="New Task"/>
+  <commands xmi:id="_RZXdoDTVEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.command.removeTask" commandName="Remove Task"/>
+  <commands xmi:id="_pGabgDgnEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.command.newCategory" commandName="New Category"/>
+  <commands xmi:id="_EOYHUDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.command.removeCategory" commandName="Remove Category"/>
   <addons xmi:id="_mQK7UTKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_mQK7UjKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_mQK7UzKOEeuCOfde3w3aNg" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>

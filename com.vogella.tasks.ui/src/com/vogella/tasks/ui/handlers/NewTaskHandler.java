@@ -14,7 +14,7 @@ public class NewTaskHandler extends EditTaskHandlerBase {
 		newTask.setTitle("New Task");
 		
         try {
-			getCurrentSelection().getValue().getCategory().add(newTask);
+			((ITask) getCurrentSelection().getValue()).getCategory().add(newTask);
 		} catch (OperationNotSupportedException e) {
 			e.printStackTrace();
 		}

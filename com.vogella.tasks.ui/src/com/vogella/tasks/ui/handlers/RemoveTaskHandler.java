@@ -9,7 +9,7 @@ public class RemoveTaskHandler extends EditTaskHandlerBase {
 	@Execute
     public void execute() {
         try {
-        	ITask taskToRemove = getCurrentSelection().getValue();
+        	ITask taskToRemove = (ITask) getCurrentSelection().getValue();
         	taskToRemove.getCategory().remove(taskToRemove);
         	
 		} catch (OperationNotSupportedException e) {
