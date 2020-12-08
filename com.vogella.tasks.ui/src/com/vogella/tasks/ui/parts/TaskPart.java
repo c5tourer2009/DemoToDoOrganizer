@@ -135,9 +135,7 @@ public class TaskPart {
         DateTime dateD = new DateTime(header, SWT.DATE | SWT.DROP_DOWN);
         model = BeanProperties.value(Task.FIELD_DUEDATE).observeDetail(task);
         dataBindingContext.bindValue(SWTObservables.observeSelection(dateD), model);
-        
-        
-        
+               
         Text taskDescription = new Text(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
 		taskDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
 		taskDescription.setEditable(true);

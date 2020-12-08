@@ -67,6 +67,11 @@ public class TaskListPart {
 		column.getColumn().setText("Due Date");
 		column.getColumn().setWidth(180);
 		initLabelProvider(column, "dueDate", contentProvider);
+		
+		column = new TableViewerColumn(tableViewer, SWT.NONE);
+		column.getColumn().setText("Category");
+		column.getColumn().setWidth(100);
+		initLabelProvider(column, "category.name", contentProvider);
 			
 		column = new TableViewerColumn(tableViewer, SWT.NONE);
 		column.getColumn().setText("Priority");
