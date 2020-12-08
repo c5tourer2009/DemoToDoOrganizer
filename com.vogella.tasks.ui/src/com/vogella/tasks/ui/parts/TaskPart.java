@@ -12,6 +12,7 @@ import org.eclipse.core.databinding.observable.value.WritableValue;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.services.IStylingEngine;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
@@ -80,6 +81,17 @@ public class TaskPart {
 				WidgetProperties.text(SWT.Modify).observe(taskTitleText), 
 				BeanProperties.value(Task.FIELD_TITLE).observeDetail(task));
 		
+		//*** Categorie ***
+		label = new Label(header, SWT.BOLD);
+		label.setText("Categorie");
+		
+		Text taskCategorieText = new Text(header, SWT.BORDER);
+		taskCategorieText.setLayoutData(new GridData(GridData.FILL_BOTH));
+		taskCategorieText.setEditable(true);
+		dataBindingContext.bindValue(
+				WidgetProperties.text(SWT.Modify).observe(taskCategorieText), 
+				BeanProperties.value("category.name").observeDetail(task));
+		
 		//*** Status ***
 		label = new Label(header, SWT.NONE);
 		label.setText("Status");
@@ -121,6 +133,10 @@ public class TaskPart {
 		label.setText("Due Date");
 		
         DateTime dateD = new DateTime(header, SWT.DATE | SWT.DROP_DOWN);
+        model = BeanProperties.value(Task.FIELD_DUEDATE).observeDetail(task);
+        dataBindingContext.bindValue(SWTObservables.observeSelection(dateD), model);
+        
+        
         
         Text taskDescription = new Text(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.WRAP);
 		taskDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
@@ -135,6 +151,7 @@ public class TaskPart {
 		this.navigationItem = navigationItem;
 		
 		if(navigationItem == null) {
+			task.setValue(null);
 			return;
 		}
 		

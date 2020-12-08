@@ -3,12 +3,16 @@ package com.vogella.tasks.ui.parts;
 import java.util.Date;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.eclipse.core.databinding.beans.BeanProperties;
+import org.eclipse.core.databinding.property.Properties;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.di.Focus;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.services.IStylingEngine;
 import org.eclipse.e4.ui.workbench.modeling.ESelectionService;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
+import org.eclipse.jface.databinding.viewers.ObservableMapCellLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -18,6 +22,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -43,7 +48,8 @@ public class TaskListPart {
 	@Inject
 	public TaskListPart(Composite parent, @Optional IStylingEngine styleEngine) {
 		tableViewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
-		tableViewer.setContentProvider(new ObservableListContentProvider<Object>());
+		ObservableListContentProvider<ITask> contentProvider = new ObservableListContentProvider<ITask>();
+		tableViewer.setContentProvider(contentProvider);
 		tableViewer.getTable().setLayoutData(new GridData(GridData.FILL_BOTH));
 		tableViewer.getTable().setHeaderVisible(true);
 		tableViewer.getTable().setLinesVisible(true);
@@ -55,42 +61,22 @@ public class TaskListPart {
 		TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.NONE);
 		column.getColumn().setText("Title");
 		column.getColumn().setWidth(250);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return ((ITask) element).getTitle();
-			}
-		});
+		initLabelProvider(column, "title", contentProvider);
 		
 		column = new TableViewerColumn(tableViewer, SWT.NONE);
 		column.getColumn().setText("Due Date");
 		column.getColumn().setWidth(180);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {			
-				return getCellValueFor(((ITask)element).getDueDate());
-			}
-		});
+		initLabelProvider(column, "dueDate", contentProvider);
 			
 		column = new TableViewerColumn(tableViewer, SWT.NONE);
 		column.getColumn().setText("Priority");
 		column.getColumn().setWidth(80);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return getCellValueFor(((ITask)element).getPriority());
-			}
-		});
+		initPriorityLabelProvider(column, contentProvider);
 		
 		column = new TableViewerColumn(tableViewer, SWT.NONE);
 		column.getColumn().setText("Status");
 		column.getColumn().setWidth(90);
-		column.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				return getCellValueFor(((ITask)element).getStatus());
-			}
-		});
+		initStatusLabelProvider(column, contentProvider);
 		
 		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
@@ -149,6 +135,38 @@ public class TaskListPart {
 		if(doRefresh) {
 			tableViewer.refresh();
 		}
+	}
+	
+	private void initLabelProvider(final TableViewerColumn column, final String propertyName, ObservableListContentProvider<ITask> contentProvider) {
+		column.setLabelProvider(
+				new ObservableMapCellLabelProvider(
+						Properties.observeEach(contentProvider.getKnownElements(), BeanProperties.values(propertyName))) {
+					
+					public void update(ViewerCell cell) {
+						super.update(cell);
+					}});
+	}
+	
+	private void initPriorityLabelProvider(final TableViewerColumn column, ObservableListContentProvider<ITask> contentProvider) {
+		column.setLabelProvider(
+				new ObservableMapCellLabelProvider(
+						Properties.observeEach(contentProvider.getKnownElements(), BeanProperties.values("priority"))) {
+					
+					public void update(ViewerCell cell) {
+						ITask task = (ITask) cell.getElement();
+						cell.setText(getCellValueFor(task.getPriority()));
+					}});
+	}
+	
+	private void initStatusLabelProvider(final TableViewerColumn column, ObservableListContentProvider<ITask> contentProvider) {
+		column.setLabelProvider(
+				new ObservableMapCellLabelProvider(
+						Properties.observeEach(contentProvider.getKnownElements(), BeanProperties.values("status"))) {
+					
+					public void update(ViewerCell cell) {
+						ITask task = (ITask) cell.getElement();
+						cell.setText(getCellValueFor(task.getStatus()));
+					}});
 	}
 			
 	private String getCellValueFor(Date date) {

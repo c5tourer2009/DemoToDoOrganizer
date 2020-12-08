@@ -7,7 +7,6 @@ import com.vogella.tasks.common.interfaces.dataAbstraction.INamed;
 
 public class TaskCategory extends OwnerNotificationObject implements ITaskCategory, INamed {
 
-	public static final String FIELD_PARENT = "parent";
 	public static final String FIELD_NAME = "name";
 	
 	private String name;
