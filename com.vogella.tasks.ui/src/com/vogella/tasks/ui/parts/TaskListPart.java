@@ -21,18 +21,20 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
-import com.vogella.tasks.common.impl.DataManager;
-import com.vogella.tasks.common.interfaces.IDataManager;
+
+import com.vogella.tasks.common.factories.NavigationItemFactory;
 import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.ITaskCategory;
-import com.vogella.tasks.common.interfaces.ITaskContainer;
-import com.vogella.tasks.common.interfaces.IToDoList;
 import com.vogella.tasks.common.interfaces.TaskPriority;
 import com.vogella.tasks.common.interfaces.TaskStatus;
+import com.vogella.tasks.common.interfaces.navigation.INavigationItem;
+import com.vogella.tasks.common.interfaces.navigation.IOrganizerNavigationItem;
+import com.vogella.tasks.ui.filters.TaskCategoryFilter;
 
 public class TaskListPart {
 	
 	private TableViewer tableViewer;
+	private IOrganizerNavigationItem navigationItem;
 	
 	@Inject
 	@Optional
@@ -93,8 +95,13 @@ public class TaskListPart {
 		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
 				if(selectionService != null ) {
-					Object selection = ((IStructuredSelection)event.getSelection()).getFirstElement();
-					selectionService.setSelection(selection);
+					
+					ITask selectedTask = (ITask)((IStructuredSelection)event.getSelection()).getFirstElement();
+					INavigationItem newNavigationItem = NavigationItemFactory.create(
+							selectedTask, 
+							navigationItem.getToDoList().getCategories()
+					);
+					selectionService.setSelection(newNavigationItem);
 				}
 			}
 		});
@@ -110,8 +117,6 @@ public class TaskListPart {
 		        MessageDialog.openInformation(parent.getShell(), "Info", item.getTitle());
 		    }
 		});
-		
-		System.out.println(this.getClass().getSimpleName() + " constructed");
 	}
 	
 	@Focus
@@ -120,14 +125,32 @@ public class TaskListPart {
 	}
 	
 	@Inject
-	public void setContainer(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ITaskContainer taskContainer) {
-		if(taskContainer == null) {
+	public void setContainer(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional IOrganizerNavigationItem navigationItem) {
+		if(navigationItem == null) {
 			return;
 		}
 		
-		tableViewer.setInput(taskContainer.getTasks());
+		this.navigationItem = navigationItem;
+		Object selectedItem = navigationItem.getSelectedItem();
+		
+		if(tableViewer.getInput() == null) {
+			tableViewer.setInput(navigationItem.getToDoList().getTasks());
+		}
+		
+		boolean doRefresh = false;
+		if(selectedItem instanceof ITaskCategory) {
+			tableViewer.setFilters(new TaskCategoryFilter((ITaskCategory) selectedItem));
+			doRefresh = true;
+		} else if(tableViewer.getFilters().length > 0) {
+			tableViewer.resetFilters();
+			doRefresh = true;
+		}
+		
+		if(doRefresh) {
+			tableViewer.refresh();
+		}
 	}
-	
+			
 	private String getCellValueFor(Date date) {
 		if(date == null) {
 			return "";

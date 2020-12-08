@@ -2,12 +2,13 @@ package com.vogella.tasks.common.impl;
 
 import java.beans.PropertyChangeEvent;
 import java.util.Date;
+import com.vogella.tasks.common.impl.dataAbstraction.OwnerNotificationObject;
 import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.ITaskCategory;
 import com.vogella.tasks.common.interfaces.TaskPriority;
 import com.vogella.tasks.common.interfaces.TaskStatus;
 
-public class Task extends NotificationObject implements ITask {
+public class Task extends OwnerNotificationObject implements ITask {
 	
 	public static final String FIELD_TITLE = "title";
     public static final String FIELD_DESCRIPTION = "description";

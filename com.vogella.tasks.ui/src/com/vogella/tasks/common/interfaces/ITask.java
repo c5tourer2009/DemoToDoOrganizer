@@ -45,4 +45,6 @@ public interface ITask {
 	void setPriority(TaskPriority priority);
 	
 	void setStatus(TaskStatus status);
+	
+	void setCategory(ITaskCategory category);
 }

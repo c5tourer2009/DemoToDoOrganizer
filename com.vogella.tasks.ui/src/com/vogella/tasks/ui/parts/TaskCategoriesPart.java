@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.eclipse.core.databinding.beans.BeanProperties;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.core.databinding.observable.list.WritableList;
 import org.eclipse.core.databinding.observable.masterdetail.IObservableFactory;
 import org.eclipse.core.databinding.property.list.IListProperty;
 import org.eclipse.e4.core.di.annotations.Optional;
@@ -17,14 +18,16 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Composite;
-import com.vogella.tasks.common.impl.DataManager;
-import com.vogella.tasks.common.interfaces.IDataManager;
-import com.vogella.tasks.common.interfaces.ITaskCategory;
+import com.vogella.tasks.common.factories.NavigationItemFactory;
+import com.vogella.tasks.common.impl.OrganizerDataAccessor;
+import com.vogella.tasks.common.interfaces.IOrganizerDataAccessor;
 import com.vogella.tasks.common.interfaces.IToDoList;
+import com.vogella.tasks.common.interfaces.dataAbstraction.INamed;
+import com.vogella.tasks.common.interfaces.navigation.INavigationItem;
 
-public class TaskContainerPart {
+public class TaskCategoriesPart {
 	
-	private IDataManager dataManager;
+	private IOrganizerDataAccessor dataManager;
 	private final TreeViewer treeViewer;
 	
 	@Inject
@@ -32,15 +35,13 @@ public class TaskContainerPart {
 	private ESelectionService selectionService;
 	
 	@Inject
-	public TaskContainerPart(Composite parent) {
+	public TaskCategoriesPart(Composite parent) {
 		treeViewer = new TreeViewer(parent);
 		treeViewer.setLabelProvider(new ColumnLabelProvider() {
 			@Override
 			public String getText(Object element) {
-				if(element instanceof IToDoList) {
-					return ((IToDoList) element).getName();
-				} else if(element instanceof ITaskCategory) {
-					return ((ITaskCategory) element).getName();
+				if(element instanceof INamed) {
+					return ((INamed) element).getName();
 				}
 				
 				return super.getText(element);
@@ -54,37 +55,28 @@ public class TaskContainerPart {
 				if(target instanceof IObservableList) {
 					return (IObservable) target;
 				} else if(target instanceof IToDoList) {
-					return prop.observe(target);
+					return  (IObservable) ((IToDoList) target).getCategories();
 				}
 				return null;
 			}
 		};
 		
 		TreeStructureAdvisor advisor = new TreeStructureAdvisor() { 
-			@Override
-			public Object getParent(Object element) {
-		           return "";
-		    }
-			
-			@Override
-		    public Boolean hasChildren(Object element) {
-				if(element instanceof IToDoList){
-					IToDoList folder = (IToDoList)element;
-					return !folder.getCategories().isEmpty();
-		        }
-				
-				return false;
-			}
-			
 			
 		};
 		
-		treeViewer.setContentProvider(new ObservableListTreeContentProvider(factory, advisor));
+		treeViewer.setContentProvider(new ObservableListTreeContentProvider<Object>(factory, advisor));
 		treeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			
 			public void selectionChanged(SelectionChangedEvent event) {
-				if(selectionService != null ) {
-					selectionService.setSelection(((IStructuredSelection)event.getSelection()).getFirstElement());
+				
+				if(selectionService != null) {
+					Object selectedItem = ((IStructuredSelection)event.getSelection()).getFirstElement();
+					INavigationItem navigationItem = NavigationItemFactory.create(
+							selectedItem, 
+							dataManager.getToDoList());
+					
+					selectionService.setSelection(navigationItem);
 				}
 			}
 		});
@@ -92,7 +84,9 @@ public class TaskContainerPart {
 	
 	@PostConstruct
 	public void init() {
-		dataManager = new DataManager();
-		treeViewer.setInput(dataManager.getToDoLists());
+		dataManager = new OrganizerDataAccessor();
+		WritableList<IToDoList> sourceList = new WritableList<IToDoList>();
+		sourceList.add(dataManager.getToDoList());
+		treeViewer.setInput(sourceList);
 	}
 }

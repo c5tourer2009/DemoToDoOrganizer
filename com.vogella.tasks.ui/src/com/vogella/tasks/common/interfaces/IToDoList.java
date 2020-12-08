@@ -8,9 +8,7 @@ public interface IToDoList {
 	
 	void setName(String name);
 	
-	void add(ITaskCategory category);
-	
-	void remove(ITaskCategory category);
-	
 	List<ITaskCategory> getCategories();
+	
+	List<ITask> getTasks();
 }

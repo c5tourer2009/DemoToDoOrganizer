@@ -7,16 +7,18 @@ import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.workbench.modeling.EPartService;
+import com.vogella.tasks.common.interfaces.navigation.ISelectedItemNavigationItem;
 
-public class EditSelectionHandlerBase {
-	private WritableValue<Object> selectedItem;
+public class SelectionHandlerBase {
+	private WritableValue<ISelectedItemNavigationItem<Object>> selectedItem;
 	
-	protected WritableValue<Object> getCurrentSelection() {
-		return selectedItem;
+	protected ISelectedItemNavigationItem<Object> getNavigationItem() {
+		return selectedItem.getValue();
 	}
 	
 	@CanExecute
 	public boolean canExecute(EPartService partService) {
+		
 		if(selectedItem == null) {
 			return false;
 		}
@@ -25,14 +27,14 @@ public class EditSelectionHandlerBase {
 	}
 	
 	@Inject
-	public void setTask(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) Object item) {
+	public void setTask(@Optional @Named(IServiceConstants.ACTIVE_SELECTION) ISelectedItemNavigationItem<Object> item) {
 		if(item == null) {
 			this.selectedItem = null;
 			return;
 		}
 		
 		if(this.selectedItem == null) {
-			this.selectedItem = new WritableValue<Object>();
+			this.selectedItem = new WritableValue<ISelectedItemNavigationItem<Object>>();
 		}
 		
 		this.selectedItem.setValue(item);

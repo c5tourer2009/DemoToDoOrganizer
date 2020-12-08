@@ -1,23 +1,29 @@
 package com.vogella.tasks.common.impl;
 
-import java.beans.IndexedPropertyChangeEvent;
 import java.beans.PropertyChangeEvent;
 import java.util.List;
-import org.eclipse.core.databinding.observable.list.WritableList;
-
+import com.vogella.tasks.common.impl.collections.CustomList;
+import com.vogella.tasks.common.impl.collections.TaskCategoryList;
+import com.vogella.tasks.common.impl.dataAbstraction.NotificationObject;
+import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.ITaskCategory;
 import com.vogella.tasks.common.interfaces.IToDoList;
+import com.vogella.tasks.common.interfaces.dataAbstraction.INamed;
+import com.vogella.tasks.common.interfaces.dataAbstraction.IOwner;
 
-public class ToDoList extends NotificationObject implements IToDoList {
+public class ToDoList extends NotificationObject implements IToDoList, INamed, IOwner {
 
-	public static final String FIELD_CATEGORY_LIST = "categoryList";
 	public static final String FIELD_NAME = "name";
-	
+		
+	private final ToDoListController toDoListController;
+	private final TaskCategoryList categoryList;
+	private final CustomList<ITask> taskList;
 	private String name;
-	private final WritableList<ITaskCategory> categoryList;
 	
 	public ToDoList() {
-		categoryList = new WritableList<>();
+		toDoListController = new ToDoListController(this);
+		categoryList = new TaskCategoryList(this, toDoListController);
+		taskList = new CustomList<ITask>();
 	}
 	
 	@Override
@@ -35,13 +41,8 @@ public class ToDoList extends NotificationObject implements IToDoList {
 		return categoryList;
 	}
 	
-	public void add(ITaskCategory category) {
-		categoryList.add(category);
-		firePropertyChange(new IndexedPropertyChangeEvent(this, FIELD_CATEGORY_LIST, null, categoryList, categoryList.size() - 1));
-	}
-	
-	public void remove(ITaskCategory category) {
-		categoryList.remove(category);
-		firePropertyChange(new IndexedPropertyChangeEvent(this, FIELD_CATEGORY_LIST, null, categoryList, categoryList.size() - 1));
+	@Override
+	public List<ITask> getTasks() {
+		return taskList;
 	}
 }

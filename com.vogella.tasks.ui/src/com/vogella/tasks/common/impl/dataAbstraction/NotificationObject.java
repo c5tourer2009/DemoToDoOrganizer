@@ -1,4 +1,4 @@
-package com.vogella.tasks.common.impl;
+package com.vogella.tasks.common.impl.dataAbstraction;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;

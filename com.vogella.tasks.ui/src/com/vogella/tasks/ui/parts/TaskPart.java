@@ -13,8 +13,6 @@ import org.eclipse.e4.core.di.annotations.Optional;
 import org.eclipse.e4.ui.services.IServiceConstants;
 import org.eclipse.e4.ui.services.IStylingEngine;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
-import org.eclipse.jface.databinding.viewers.IViewerObservableValue;
-import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
 import org.eclipse.jface.databinding.viewers.ViewerProperties;
 import org.eclipse.jface.databinding.viewers.ViewersObservables;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -27,16 +25,17 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
-
 import com.vogella.tasks.common.impl.Task;
 import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.TaskPriority;
 import com.vogella.tasks.common.interfaces.TaskStatus;
+import com.vogella.tasks.common.interfaces.navigation.ITaskNavigationItem;
 
 public class TaskPart {
 
 	private final DataBindingContext dataBindingContext;
 	private final ObservablesManager observablesManager;
+	private ITaskNavigationItem navigationItem;
 	private WritableValue<ITask> task;
 	
 	@Inject
@@ -132,12 +131,18 @@ public class TaskPart {
 	}
 	
 	@Inject
-	public void setTask(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ITask task) {
+	public void setTask(@Named(IServiceConstants.ACTIVE_SELECTION) @Optional ITaskNavigationItem navigationItem) {
+		this.navigationItem = navigationItem;
+		
+		if(navigationItem == null) {
+			return;
+		}
+		
 		if(task == null) {
 			return;
 		}
 		
-		this.task.setValue(task);
+		this.task.setValue(navigationItem.getSelectedItem());
 	}
 	
 	@PreDestroy
