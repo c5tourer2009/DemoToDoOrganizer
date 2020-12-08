@@ -2,11 +2,11 @@ package com.vogella.tasks.common.impl.collections;
 
 import java.util.Collection;
 import org.eclipse.core.databinding.observable.list.WritableList;
-
+import com.vogella.tasks.common.interfaces.collections.ICustomList;
 import com.vogella.tasks.common.interfaces.dataAbstraction.IOwner;
 import com.vogella.tasks.common.interfaces.dataAbstraction.IOwnerNotificationObject;
 
-public class CustomList<T> extends WritableList<T> implements IOwner {
+public class CustomList<T> extends WritableList<T> implements ICustomList<T>, IOwner {
 
 	@Override
 	public T remove(int index) {
@@ -15,6 +15,10 @@ public class CustomList<T> extends WritableList<T> implements IOwner {
 		return super.remove(index);
 	}
 
+	public boolean IsInUse(Object element) {
+		return false;
+	}
+	
 	@Override
 	public boolean add(T element) {
 		SetOwnerFor(element);

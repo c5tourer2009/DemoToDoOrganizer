@@ -1,5 +1,6 @@
 package com.vogella.tasks.common.impl;
 
+import java.util.ArrayList;
 import com.vogella.tasks.common.interfaces.ITask;
 import com.vogella.tasks.common.interfaces.ITaskCategory;
 import com.vogella.tasks.common.interfaces.IToDoList;
@@ -18,7 +19,7 @@ public class ToDoListController {
 	
 	public boolean IsInUse(ITaskCategory taskCategory) {
 		for (ITask current : toDoList.getTasks()) {
-			if(current == taskCategory) {
+			if(current.getCategory() == taskCategory) {
 				return true;
 			}
 		}
@@ -27,9 +28,12 @@ public class ToDoListController {
 	}
 	
 	public void RemoveAllDependencies(ITaskCategory taskCategory) {
-		for(ITask task : toDoList.getTasks()) {
+		ArrayList<ITask> copyList = new ArrayList<ITask>(toDoList.getTasks());
+		
+		for(ITask task : copyList) {
 			if(task.getCategory() == taskCategory) {
-				task.setCategory(null);
+				toDoList.getTasks().remove(task);
+				//task.setCategory(null);
 			}
 		}
 	}

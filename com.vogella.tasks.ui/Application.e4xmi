@@ -25,10 +25,10 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_mdTJcDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" tooltip="Exit" command="_M6AWYDTVEeuCm_503Nzb1w"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_eXhucDTbEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_PP4TQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.newTask" label="New Task" tooltip="New Task" command="_Ped3MDTVEeuCm_503Nzb1w"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_YUSssDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.newTaskCategory" label="New Category" tooltip="New Category" command="_pGabgDgnEeuzttwQVI90wA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_PP4TQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.newTask" label="New Task" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/task16x16.png" tooltip="New Task" command="_Ped3MDTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_YUSssDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.newTaskCategory" label="New Category" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/category16x16.png" tooltip="New Category" command="_pGabgDgnEeuzttwQVI90wA"/>
         <children xsi:type="menu:MenuSeparator" xmi:id="_SpLkADgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.menuseparator.0"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_U5SWMDlsEeuNRbAqw86DDQ" elementId="com.vogella.tasks.ui.handledmenuitem.remove" label="Remove" tooltip="Remove" command="_KQ40IDlsEeuNRbAqw86DDQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_U5SWMDlsEeuNRbAqw86DDQ" elementId="com.vogella.tasks.ui.handledmenuitem.remove" label="Remove" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/remove16x16.png" tooltip="Remove" command="_KQ40IDlsEeuNRbAqw86DDQ"/>
       </children>
     </mainMenu>
     <trimBars xmi:id="_Y-wVoDYdEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.trimbar.top">

@@ -15,8 +15,9 @@ public class TaskCategoryList extends CustomList<ITaskCategory> implements IOwne
 		this.controller = controller;
 	}
 	
-	public boolean IsInUse(ITaskCategory taskCategory) {
-		return controller.IsInUse(taskCategory);
+	@Override
+	public boolean IsInUse(Object element) {
+		return controller.IsInUse((ITaskCategory) element);
 	}
 	
 	@Override
