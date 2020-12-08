@@ -5,14 +5,14 @@
       <children xsi:type="advanced:Perspective" xmi:id="_FdQmwDYvEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.perspective.main">
         <children xsi:type="basic:PartSashContainer" xmi:id="_ScOiIDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partsashcontainer.main" horizontal="true">
           <children xsi:type="basic:PartStack" xmi:id="_V_a8EDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.navigation">
-            <children xsi:type="basic:Part" xmi:id="_e0ePsDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskCategories" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskCategoriesPart" label="Categories"/>
+            <children xsi:type="basic:Part" xmi:id="_e0ePsDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskCategories" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskCategoriesPart" label="Categories" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/category16x16.png"/>
           </children>
           <children xsi:type="basic:PartSashContainer" xmi:id="_6GA6UDYxEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partsashcontainer.content">
             <children xsi:type="basic:PartStack" xmi:id="_-JoWMDYwEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.contentTop">
-              <children xsi:type="basic:Part" xmi:id="_yqf-8DKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskList" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskListPart" label="Tasks"/>
+              <children xsi:type="basic:Part" xmi:id="_yqf-8DKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskList" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskListPart" label="Tasks" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/toDoList16x16.png"/>
             </children>
             <children xsi:type="basic:PartStack" xmi:id="_A1qeoDYxEeut_9AWbMsaXA" elementId="com.vogella.tasks.ui.partstack.contentBottom">
-              <children xsi:type="basic:Part" xmi:id="_4HP7gDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskView" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskPart" label="Task" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/home.png"/>
+              <children xsi:type="basic:Part" xmi:id="_4HP7gDKXEeuCOfde3w3aNg" elementId="com.vogella.tasks.ui.part.taskView" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.parts.TaskPart" label="Task" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/task16x16.png"/>
             </children>
           </children>
         </children>
@@ -20,13 +20,13 @@
     </children>
     <mainMenu xmi:id="_fqd50DTXEeuCm_503Nzb1w" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_a2LuoDTbEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.menu" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_cMTssDTeEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.saveAll" label="Save" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/save_edit.png" command="_GpYF0DTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_cMTssDTeEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.saveAll" label="Save" iconURI="platform:/plugin/com.vogella.tasks.ui/resources/icons/save_edit.png" tooltip="Save" command="_GpYF0DTVEeuCm_503Nzb1w"/>
         <children xsi:type="menu:MenuSeparator" xmi:id="_Zg6LgDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menuseparator.separator1"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_mdTJcDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" command="_M6AWYDTVEeuCm_503Nzb1w"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_mdTJcDTgEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handledmenuitem.exit" label="Exit" tooltip="Exit" command="_M6AWYDTVEeuCm_503Nzb1w"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_eXhucDTbEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.menu.edit" label="Edit">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_PP4TQDfjEeutUYoU2q1HHw" elementId="com.vogella.tasks.ui.handledmenuitem.newTask" label="New Task" tooltip="New Task" command="_Ped3MDTVEeuCm_503Nzb1w"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_YUSssDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.newTaskCategory" label="New Category" command="_pGabgDgnEeuzttwQVI90wA"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_YUSssDgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handledmenuitem.newTaskCategory" label="New Category" tooltip="New Category" command="_pGabgDgnEeuzttwQVI90wA"/>
         <children xsi:type="menu:MenuSeparator" xmi:id="_SpLkADgoEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.menuseparator.0"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_U5SWMDlsEeuNRbAqw86DDQ" elementId="com.vogella.tasks.ui.handledmenuitem.remove" label="Remove" tooltip="Remove" command="_KQ40IDlsEeuNRbAqw86DDQ"/>
       </children>
@@ -42,6 +42,9 @@
   <handlers xmi:id="_HmeVUDTXEeuCm_503Nzb1w" elementId="com.vogella.tasks.ui.handler.newTask" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskHandler" command="_Ped3MDTVEeuCm_503Nzb1w"/>
   <handlers xmi:id="_1mq3EDgnEeuzttwQVI90wA" elementId="com.vogella.tasks.ui.handler.newCategory" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.NewTaskCategory" command="_pGabgDgnEeuzttwQVI90wA"/>
   <handlers xmi:id="_MVGuoDlsEeuNRbAqw86DDQ" elementId="com.vogella.tasks.ui.handler.0" contributionURI="bundleclass://com.vogella.tasks.ui/com.vogella.tasks.ui.handlers.RemoveItemFromListHandler" command="_KQ40IDlsEeuNRbAqw86DDQ"/>
+  <bindingTables xmi:id="_s8W8kDmLEeuMKvfevSKQ-w" elementId="com.vogella.tasks.ui.bindingtable.window" bindingContext="_oP2BsDfsEeutUYoU2q1HHw">
+    <bindings xmi:id="_tRopADmLEeuMKvfevSKQ-w" elementId="com.vogella.tasks.ui.keybinding.m1p" keySequence="M1+P" command="_Ped3MDTVEeuCm_503Nzb1w"/>
+  </bindingTables>
   <rootContext xmi:id="_oP2BsDfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
   <rootContext xmi:id="_qqJg8DfsEeutUYoU2q1HHw" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   <commands xmi:id="_GpYF0DTVEeuCm_503Nzb1w" elementId="org.eclipse.ui.file.saveAll" commandName="Save All"/>
